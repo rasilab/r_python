@@ -15,7 +15,7 @@ The image version corresponds to the R and Python image version numbers.
 
 ***Do the remote operations below from within a [`tmux`](https://www.redhat.com/sysadmin/introduction-tmux-linux) session so that you can detach and logout of your remote session and still keep the container running.***
 
-- Pull the Singularity container from the Subramaniam lab GitHub Packages Repo:
+- Pull the Singularity container from the Subramaniam lab GitHub Packages Repo (You don't have to do this if you use Rasi's Singularity image at the location below):
 
 ```
 module load Singularity
@@ -31,7 +31,7 @@ singularity pull --name r_python:1.1.0.simg docker://ghcr.io/rasilab/r_python:1.
 singularity exec -B /fh r_python\:1.1.0.simg /bin/bash
 ```
 
-- Start a VScode CLI tunnel from within the container:
+- Start a VScode CLI tunnel from within the container (Download the [VScode CLI](https://code.visualstudio.com/#alt-downloads) if necessary):
 
 ```
 ./code tunnel
