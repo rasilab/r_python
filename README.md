@@ -11,6 +11,8 @@ The image version corresponds to the R and Python image version numbers.
 
 ## How to use the Singularity container for interactive data analysis in R and Python
 
+### Steps on the remote machine (for example, Fred Hutch `rhino` cluster)
+
 ***Do the remote operations below from within a [`tmux`](https://www.redhat.com/sysadmin/introduction-tmux-linux) session so that you can detach and logout of your remote session and still keep the container running.***
 
 - Pull the Singularity container from the Subramaniam lab GitHub Packages Repo:
@@ -36,6 +38,8 @@ singularity exec -B /fh r_python\:1.1.0.simg /bin/bash
 ```
 
 - If you are doing the above the first time, you will have to login to GitHub using the displayed code and also name the tunnel.
+
+### Steps on the local machine (for example, your lab desktop computer)
 
 - Install [Remote Tunnels](https://code.visualstudio.com/docs/remote/tunnels) extension on your local machine.
 
