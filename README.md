@@ -13,7 +13,7 @@ The image version corresponds to the R and Python image version numbers.
 
 ***Do the remote operations below from within a [`tmux`](https://www.redhat.com/sysadmin/introduction-tmux-linux) session so that you can detach and logout of your remote session and still keep the container running.***
 
-- Pull the Singularity container from for the Subramaniam lab GitHub Packages Repo:
+- Pull the Singularity container from the Subramaniam lab GitHub Packages Repo:
 
 ```
 module load Singularity
@@ -21,7 +21,7 @@ cd /fh/scratch/delete90/subramaniam_a/user/rasi/singularity/
 singularity pull --name r_python:1.1.0.simg docker://ghcr.io/rasilab/r_python:1.1.0
 ```
 
-- Make sure that any `conda` initialization is commented out in your `.bashrc` or `.bash_profile` file on the remote machine. Otherwise, VScode will not recognize the `conda` environments within the Singularity container.
+- Make sure that any `conda` initialization is commented out in your `.bashrc` or `.bash_profile` file on the remote machine. This step is **important**. Otherwise, VScode will not recognize the `conda` environments within the Singularity container.
 
 - Start an interactive Singularity container using the above image while mounting the cluster filesystem:
 
