@@ -15,10 +15,15 @@ The image version corresponds to the R and Python image version numbers.
 
 ***Do the remote operations below from within a [`tmux`](https://www.redhat.com/sysadmin/introduction-tmux-linux) session so that you can detach and logout of your remote session and still keep the container running.***
 
-- Pull the Singularity container from the Subramaniam lab GitHub Packages Repo (You don't have to do this if you use Rasi's Singularity image at the location below):
+- Make Singularity available:
 
 ```
 module load Singularity
+```
+
+-  (Optional: You don't have to do this step if you use Rasi's Singularity image at the location below) Pull the Singularity container from the Subramaniam lab GitHub Packages Repo:
+
+```
 cd /fh/scratch/delete90/subramaniam_a/user/rasi/singularity/
 singularity pull --name r_python:1.1.0.simg docker://ghcr.io/rasilab/r_python:1.1.0
 ```
