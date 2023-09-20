@@ -21,7 +21,10 @@ The image version corresponds to the R and Python image version numbers.
 module load Singularity
 ```
 
--  (Optional: You don't have to do this step if you use Rasi's Singularity image at the location below) Pull the Singularity container from the Subramaniam lab GitHub Packages Repo:
+
+-  Pull the Singularity container from the Subramaniam lab GitHub Packages Repo:
+
+> (This step is not necessary if you use Rasi's Singularity image at the location below)
 
 ```
 cd /fh/scratch/delete90/subramaniam_a/user/rasi/singularity/
@@ -33,6 +36,7 @@ singularity pull --name r_python:1.1.0.simg docker://ghcr.io/rasilab/r_python:1.
 - Start an interactive Singularity container using the above image while mounting the cluster filesystem:
 
 ```
+cd /fh/scratch/delete90/subramaniam_a/user/rasi/singularity/
 singularity exec -B /fh r_python\:1.1.0.simg /bin/bash
 ```
 
