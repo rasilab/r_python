@@ -1,6 +1,6 @@
-FROM ghcr.io/rasilab/r_python:1.1.0
+FROM ghcr.io/rasilab/r_python:1.3.0
 
-# include for svg export from ggplot2
-RUN mamba install -y -n R -c conda-forge r-svglite
+RUN conda config --remove channels defaults
+RUN conda config --set channel_alias https://conda-forge.fredhutch.org
 
-RUN mamba install -y -n R -c bioconda bioconductor-org.hs.eg.db
+RUN mamba install -y -n R -c conda-forge r-writexl
