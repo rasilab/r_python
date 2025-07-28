@@ -1,59 +1,20 @@
 # Docker build combining R and Python
 
-This Docker build combines the Subramaniam Lab R and Python environments built in https://github.com/rasilab/python/pkgs/container/r and https://github.com/rasilab/python/pkgs/container/python.
-See [Dockerfile](./Dockerfile) for build details.
+This Docker build combines R and Python environments in a single container based on miniforge3. The container includes:
 
-We use this build for interactive analysis inside a Singularity container started on the Fred Hutch cluster.
+**Python Environment (base):**
+- Jupyter notebook server
+- Data science packages: pandas, matplotlib, biopython, pysam, regex, altair
+- Workflow management: snakemake-minimal
 
-Use the separate R and Python containers for Snakemake workflows.
+**R Environment:**
+- Tidyverse ecosystem: r-tidyverse, r-janitor, r-glue, r-devtools
+- Plotting: r-plotrix, r-ggrepel, r-ggridges, r-ggpubr
+- Bioconductor packages: plyranges, flowcore, BSgenome, org.hs.eg.db, DESeq2, ggbio
+- IRkernel for Jupyter integration
 
-The image version corresponds to the R and Python image version numbers.
+**Additional Tools:**
+- GitHub CLI and AWS CLI
+- DejaVu fonts for plotting
 
-## How to use the Singularity container for interactive data analysis in R and Python
-
-### Steps on the remote machine (for example, Fred Hutch `rhino` cluster)
-
-***Do the remote operations below from within a [`tmux`](https://www.redhat.com/sysadmin/introduction-tmux-linux) session so that you can detach and logout of your remote session and still keep the container running.***
-
-- Make Singularity available:
-
-```
-module load Singularity
-```
-
-
--  Pull the Singularity container from the Subramaniam lab GitHub Packages Repo:
-
-> (This step is not necessary if you use Rasi's Singularity image at the location below)
-
-```
-cd /fh/scratch/delete90/subramaniam_a/user/rasi/singularity/
-singularity pull --name r_python:1.1.0.simg docker://ghcr.io/rasilab/r_python:1.1.0
-```
-
-- Make sure that any `conda` initialization is commented out in your `.bashrc` or `.bash_profile` file on the remote machine. This step is **important**. Otherwise, VScode will not recognize the `conda` environments within the Singularity container.
-
-- Start an interactive Singularity container using the above image while mounting the cluster filesystem:
-
-```
-cd /fh/scratch/delete90/subramaniam_a/user/rasi/singularity/
-singularity exec -B /fh r_python\:1.1.0.simg /bin/bash
-```
-
-- Start a VScode CLI tunnel from within the container (Download the [VScode CLI](https://code.visualstudio.com/#alt-downloads) if necessary):
-
-```
-./code tunnel
-```
-
-- If you are doing the above the first time, you will have to login to GitHub using the displayed code and also name the tunnel.
-
-### Steps on the local machine (for example, your lab desktop computer)
-
-- Install [Remote Tunnels](https://code.visualstudio.com/docs/remote/tunnels) extension on your local machine.
-
-- Use the [`Remote Tunnels: Connect to Tunnel`](https://code.visualstudio.com/docs/remote/tunnels#_remote-tunnels-extension) command to connect to the tunnel you created and named above.
-
-- You can open any folder on the remote machine and create a Jupyter notebook.
-
-- You should be able to pick the Python interpreter at `/opt/conda/bin/python` or the Jupyter R kernel at `/opt/conda/envs/R/lib/R/bin/R` to run your Python or R notebook.
+See [Dockerfile](./Dockerfile) for complete build details.

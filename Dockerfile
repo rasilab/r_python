@@ -1,6 +1,55 @@
-FROM ghcr.io/rasilab/r_python:1.3.0
+FROM condaforge/miniforge3:24.11.3-0
 
-RUN conda config --remove channels defaults
+# Set correct package repository
 RUN conda config --set channel_alias https://conda-forge.fredhutch.org
 
-RUN mamba install -y -n R -c conda-forge r-writexl
+# Install Jupyter in base environment 
+RUN mamba install -y -c conda-forge jupyter 
+
+# Install Python packages in base environment 
+RUN mamba install -y -c conda-forge -c bioconda \
+    pandas \
+    matplotlib \
+    biopython \
+    pysam \
+    regex \
+    snakemake-minimal \
+    altair
+
+# Install R conda environment
+RUN mamba create -y -n R
+
+RUN mamba install -y -n R -c conda-forge \
+    r-tidyverse \
+    r-janitor \
+    r-irkernel \
+    r-glue \
+    r-devtools \
+    r-plotrix \
+    r-r.utils \
+    r-ggrepel \
+    r-ggridges \
+    r-ggpubr
+
+RUN mamba install -y -n R -c bioconda -c conda-forge \
+    bioconductor-plyranges \
+    bioconductor-flowcore \
+    bioconductor-bsgenome.hsapiens.ucsc.hg38 \
+    bioconductor-org.hs.eg.db \
+    bioconductor-deseq2 \
+    bioconductor-ggbio 
+
+# Set up R jupyter kernel and make it visible to python
+RUN /opt/conda/envs/R/bin/R -s -e "IRkernel::installspec(sys_prefix = T)"
+
+# Make R visible to python environment
+ENV PATH="$PATH:/opt/conda/envs/R/bin"
+
+SHELL ["/bin/bash", "-c"]
+
+# Install GitHub and AWS CLI
+RUN mamba install -y -c conda-forge gh awscli
+
+# Install fonts for plotting
+RUN apt update && apt install -y fonts-dejavu
+
