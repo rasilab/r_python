@@ -4,7 +4,7 @@ This Docker build combines R and Python environments in a single container based
 
 **Python Environment (base):**
 - Jupyter notebook server
-- Data science packages: pandas, matplotlib, biopython, pysam, regex, altair
+- Data science packages: pandas, matplotlib, seaborn, biopython, pysam, regex, altair, openpyxl
 - Workflow management: snakemake-minimal
 
 **R Environment:**

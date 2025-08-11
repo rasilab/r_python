@@ -53,3 +53,7 @@ RUN mamba install -y -c conda-forge gh awscli
 # Install fonts for plotting
 RUN apt update && apt install -y fonts-dejavu
 
+# Install additional Python packages
+RUN mamba install -y -c conda-forge \
+    seaborn \
+    openpyxl
