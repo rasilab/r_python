@@ -57,3 +57,7 @@ RUN apt update && apt install -y fonts-dejavu
 RUN mamba install -y -c conda-forge \
     seaborn \
     openpyxl
+
+# Create cirro environment with pip and install cirro
+RUN mamba create -y -n cirro python=3.10 pip
+RUN /opt/conda/envs/cirro/bin/pip install cirro

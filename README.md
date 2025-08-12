@@ -13,6 +13,10 @@ This Docker build combines R and Python environments in a single container based
 - Bioconductor packages: plyranges, flowcore, BSgenome, org.hs.eg.db, DESeq2, ggbio
 - IRkernel for Jupyter integration
 
+**cirro Environment (v2.2.0+):**
+- Python 3.10 with pip
+- cirro package for cloud data platform integration
+
 **Additional Tools:**
 - GitHub CLI and AWS CLI
 - DejaVu fonts for plotting
