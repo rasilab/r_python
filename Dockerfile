@@ -61,3 +61,5 @@ RUN mamba install -y -c conda-forge \
 # Create cirro environment with pip and install cirro
 RUN mamba create -y -n cirro python=3.10 pip
 RUN /opt/conda/envs/cirro/bin/pip install cirro
+
+RUN apt update && apt install -y openssh-client
