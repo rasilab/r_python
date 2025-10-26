@@ -63,3 +63,6 @@ RUN mamba create -y -n cirro python=3.10 pip
 RUN /opt/conda/envs/cirro/bin/pip install cirro
 
 RUN apt update && apt install -y openssh-client
+
+# data versioning
+RUN mamba install -y -c conda-forge dvc
