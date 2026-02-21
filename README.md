@@ -19,6 +19,25 @@ This Docker build combines R and Python environments in a single container based
 
 **Additional Tools:**
 - GitHub CLI and AWS CLI
-- DejaVu fonts for plotting
+- DVC and DVC-S3 for data versioning
+- Helvetica and DejaVu fonts for plotting
+
+## Usage
+
+### Docker
+```bash
+docker run --rm --user $(id -u):$(id -g) \
+  -v /home/$USER:/home/$USER -w "$(pwd)" \
+  ghcr.io/rasilab/r_python:2.4.2 python script.py
+```
+
+The `--user` flag ensures output files are owned by the calling user instead of root.
+
+### Singularity
+```bash
+singularity exec -B /home/$USER r_python_2.4.2.sif python script.py
+```
+
+Singularity automatically maps the host user.
 
 See [Dockerfile](./Dockerfile) for complete build details.

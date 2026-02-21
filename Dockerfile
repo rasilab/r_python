@@ -66,3 +66,11 @@ RUN apt update && apt install -y openssh-client
 
 # data versioning
 RUN mamba install -y -c conda-forge dvc
+RUN mamba install -y -c conda-forge dvc-s3
+
+# Install Helvetica fonts
+COPY fonts/Helvetica*.ttf /usr/share/fonts/truetype/helvetica/
+RUN fc-cache -fv
+
+# Set matplotlib config dir for --user mode
+ENV MPLCONFIGDIR=/tmp
